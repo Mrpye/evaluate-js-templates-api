@@ -1,0 +1,113 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Check API Endpoint",
+                "operationId": "check-api-endpoint",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/evaluate": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Evaluate JS Code and return result",
+                "operationId": "post-evaluate-js-code",
+                "parameters": [
+                    {
+                        "description": "query params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/body_types.Evaluate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "tar file Exported",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/template": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Builds a template and returns the result",
+                "operationId": "post-build-template",
+                "parameters": [
+                    {
+                        "description": "query params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/body_types.Template"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "tar file Exported",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "body_types.Evaluate": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "model": {}
+            }
+        },
+        "body_types.Template": {
+            "type": "object",
+            "properties": {
+                "model": {},
+                "template": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,72 @@
+definitions:
+  body_types.Evaluate:
+    properties:
+      code:
+        type: string
+      model: {}
+    type: object
+  body_types.Template:
+    properties:
+      model: {}
+      template:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /:
+    get:
+      operationId: check-api-endpoint
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: Check API Endpoint
+  /evaluate:
+    post:
+      operationId: post-evaluate-js-code
+      parameters:
+      - description: query params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/body_types.Evaluate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: tar file Exported
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+      summary: Evaluate JS Code and return result
+  /template:
+    post:
+      operationId: post-build-template
+      parameters:
+      - description: query params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/body_types.Template'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: tar file Exported
+          schema:
+            type: string
+        "404":
+          description: error
+          schema:
+            type: string
+      summary: Builds a template and returns the result
+swagger: "2.0"
