@@ -1,4 +1,4 @@
-# An Api endpoint to evaluate js and Build Go Templates
+# An API endpoint to evaluate js and build Go templates
 
 ## Description
 The solution enables you to evaluate JS code and also build out Go Templates via a REST API
