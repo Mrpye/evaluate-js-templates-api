@@ -126,10 +126,37 @@ Result:
 </details>
 
 <details>
-<summary>Build a template</summary>
+<summary>Build a template simple</summary>
 
 ``` bash
-{
+curl --location 'localhost:8080/template' \
+--header 'Content-Type: application/json' \
+--data '{
+    "template":"Message: {{.test1}} Message: {{.test2}}",
+    "model":{
+        "test1":"This is Test1",
+        "test2":5
+    }
+}'
+
+```
+Result:
+```
+Message: This is Test1
+ A number: 5
+ list of numbers:  1 2 3 4 5
+ list of names and age:  TONY:22  FRED:45 
+```
+
+</details>
+
+<details>
+<summary>Build a template complex</summary>
+
+``` bash
+curl --location 'localhost:8080/template' \
+--header 'Content-Type: application/json' \
+--data '{
     "template":"Message: {{.test1}}\n A number: {{.test2}}\n list of numbers: {{range $val := .loop1}} {{$val}}{{end}}\n list of names and age: {{range $val := .loop2}} {{uc $val.name}}:{{$val.age}} {{end}}",
     "model":{
         "test1":"This is Test1",
@@ -146,15 +173,15 @@ Result:
             }
         ]
     }
-}
+}'
 
 ```
 Result:
 ```
-{
-    "test": "mydata",
-    "test2": 15
-}
+Message: This is Test1
+ A number: 5
+ list of numbers:  1 2 3 4 5
+ list of names and age:  TONY:22  FRED:45 
 ```
 
 </details>
