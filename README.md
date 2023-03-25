@@ -132,7 +132,7 @@ Result:
 curl --location 'localhost:8080/template' \
 --header 'Content-Type: application/json' \
 --data '{
-    "template":"Message: {{.test1}} Message: {{.test2}}",
+    "template":"Message1: {{.test1}} Message2: {{.test2}}",
     "model":{
         "test1":"This is Test1",
         "test2":5
@@ -142,10 +142,7 @@ curl --location 'localhost:8080/template' \
 ```
 Result:
 ```
-Message: This is Test1
- A number: 5
- list of numbers:  1 2 3 4 5
- list of names and age:  TONY:22  FRED:45 
+Message1: This is Test1 Message2: 5
 ```
 
 </details>
